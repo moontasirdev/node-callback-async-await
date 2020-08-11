@@ -13,11 +13,17 @@ const getPost = () => {
   }, 1000);
 };
 
-const createPost = (post) => {
+const createPost = (post, callback) => {
+  console.dir('I am here');
   setTimeout(() => {
+    console.dir('I am executing');
     posts.push(post);
+    console.dir('I am done');
+    callback();
   }, 2000);
+  console.dir('function ends!');
 };
 
-createPost({ id: '3', name: 'This is post 3' });
-getPost();
+createPost({ id: '3', name: 'This is post 3' }, getPost);
+console.dir('calling get posts!');
+// getPost();

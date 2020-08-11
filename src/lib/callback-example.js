@@ -17,7 +17,7 @@ const createPost = (post) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       posts.push(post);
-      const error = posts.length !== 3;
+      const error = false;
       if (!error) {
         resolve();
       } else {
@@ -27,4 +27,30 @@ const createPost = (post) => {
   });
 };
 
-createPost({ id: '3', name: 'This is post 3' }).then(getPosts);
+// createPost({ id: '3', name: 'This is post 3' }).then(getPosts);
+
+// let result = createPost({ id: '3', name: 'This is post 3' });
+// await createPost({ id: '3', name: 'This is post 3' });
+// getPosts();
+
+const executeFinalResult = async () => {
+  try {
+    await createPost({ id: '3', name: 'This is post 3' });
+    await createPost({ id: '4', name: 'This is post 4' });
+    await createPost({ id: '5', name: 'This is post 5' });
+
+    // const call1 = createPost({ id: '3', name: 'This is post 3' });
+    // const call2 = createPost({ id: '4', name: 'This is post 4' });
+    // const call3 = createPost({ id: '5', name: 'This is post 5' });
+
+    // await Promise.all([call1, call2, call3]);
+
+    getPosts();
+  } catch (err) {
+    console.dir(err);
+  }
+};
+
+executeFinalResult().then(() => {
+  console.dir('done');
+});
